@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllCards } from "../../actions/actions";
+import InfiniteScroll from 'react-infinite-scroller';
 import Card from "../Card/Card";
 
 class Cards extends React.Component{
@@ -19,15 +20,23 @@ class Cards extends React.Component{
                 <div className="cards" style={{ "padding": "60px 0" }}>
                     <div className="container">
                         <div className="row">
+                            <InfiniteScroll
+                                pageStart={0}
+                                loadMore={ hendleFetch }
+                                hasMore={true || false}
+                                threshold={ 80 }
+                                loader={<div className="loader">Loading ...</div>}
+                            >
                             {
                                 cards.map( (item, i) => {
                                     return (
-                                        <div key={ i } style={ { "display": "inline-block", "float": "none", "vertical-align": "top" } } className="cards__item col-md-4 col-sm-6">
+                                        <div key={ i } style={ { "display": "inline-block", "float": "none", "verticalAlign": "top" } } className="cards__item col-md-4 col-sm-6">
                                             <Card data={ item } />
                                         </div>
                                     )
                                 } )
                             }
+                            </InfiniteScroll>
                         </div>
                         <div className="text-center">
                             <div className="btn btn-primary" onClick={ () => { hendleFetch(step) } } > Load more </div>
