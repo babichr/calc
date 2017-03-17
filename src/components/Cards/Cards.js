@@ -38,9 +38,6 @@ class Cards extends React.Component{
                             }
                             </InfiniteScroll>
                         </div>
-                        <div className="text-center">
-                            <div className="btn btn-primary" onClick={ () => { hendleFetch(step) } } > Load more </div>
-                        </div>
                     </div>
                 </div>
             )

@@ -8,7 +8,7 @@ const logger = createLogger();
 const initialState = {
     cardsReduce: {
         cards: {},
-        step: 12
+        step: 6
     }
 };
 
