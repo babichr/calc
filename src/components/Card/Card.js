@@ -4,9 +4,9 @@ class Card extends React.Component{
     render(){
         const { data } = this.props;
         return(
-            <div className="card">
+            <div className="card thumbnail">
                 <div className="img">
-                    <img width="100%" src={ data.url } alt=""/>
+                    <img width="100%" className="img-rounded" src={ data.url } alt=""/>
                 </div>
                 <h5 className="card__title">
                     {
