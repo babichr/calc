@@ -1,33 +1,36 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllCards } from "../../actions/actions";
+import Card from "../Card/Card";
 
 class Cards extends React.Component{
 
     componentWillMount(){
-        this.hendleFetch
+        this.props.hendleFetch(this.props.data.step)
     }
 
     render(){
 
-        const { cards } = this.props;
+        const { data, hendleFetch } = this.props;
+        const { cards, step } = data;
 
         if ( cards.length ){
             return(
-                <div className="cards">
+                <div className="cards" style={{ "padding": "60px 0" }}>
                     <div className="container">
                         <div className="row">
                             {
                                 cards.map( (item, i) => {
                                     return (
-                                        <div key={ i } className="card">
-                                            {
-                                                item.title
-                                            }
+                                        <div key={ i } style={ { "display": "inline-block", "float": "none", "vertical-align": "top" } } className="cards__item col-md-4 col-sm-6">
+                                            <Card data={ item } />
                                         </div>
                                     )
                                 } )
                             }
+                        </div>
+                        <div className="text-center">
+                            <div className="btn btn-primary" onClick={ () => { hendleFetch(step) } } > Load more </div>
                         </div>
                     </div>
                 </div>
@@ -40,11 +43,11 @@ class Cards extends React.Component{
 
 
 const mapStateToProps = ( state ) => ({
-    cards: state.cardsReduce
+    data: state.cardsReduce
 });
 
 const mapDispatchToProps = ( dispatch ) => ({
-    hendleFetch: dispatch(getAllCards())
+    hendleFetch: (step) => { dispatch(getAllCards(step)); }
 });
 
 Cards = connect( mapStateToProps, mapDispatchToProps )(Cards);

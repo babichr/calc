@@ -1,11 +1,16 @@
-import { createStore, applyMiddleware, combineReducers, compose } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import createLogger from "redux-logger";
 import thunk from "redux-thunk";
 import { cardsReduce } from "./reducers"
 
 const logger = createLogger();
 
-const initialState = {};
+const initialState = {
+    cardsReduce: {
+        cards: {},
+        step: 12
+    }
+};
 
 const makeRootReduces = ( ) => {
     return combineReducers({
